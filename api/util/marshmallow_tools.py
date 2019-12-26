@@ -2,6 +2,7 @@ from flask import request, g
 from marshmallow import ValidationError
 import json
 
+
 def ma_validation(schema):
     def wrap(func):
         def wrapper(*args):
@@ -13,4 +14,3 @@ def ma_validation(schema):
             func(args)
         return wrapper
     return wrap
-

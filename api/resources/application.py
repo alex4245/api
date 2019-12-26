@@ -14,10 +14,10 @@ class UserLogin(Resource):
         user = User.find_by_username(username)
 
         if not user:
-            return { 'message': 'User %s is not exist' % username }
+            return {'message': 'User %s is not exist' % username}
 
         if not password or not User.verify_hash(password, user.password):
-            return { 'message': 'User and password don\'t match' }
+            return {'message': 'User and password don\'t match'}
         else:
             user = User.find_by_username(username)
             user_data = {
@@ -40,10 +40,10 @@ class UserRegistration(Resource):
         repeat_password = data['repeat_password']
 
         if password != repeat_password:
-            return { 'message': 'Passwords don\'t match' }
+            return {'message': 'Passwords don\'t match'}
 
         if User.find_by_username(username):
-            return { 'message': 'User %s is already exist' % username }
+            return {'message': 'User %s is already exist' % username}
 
         user = User(
             username=username,

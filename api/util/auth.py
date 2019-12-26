@@ -4,6 +4,7 @@ from datetime import timedelta
 CONST_ACC_TOKEN_EXPIRES = timedelta(minutes=30)
 CONST_REF_TOKEN_EXPIRES = timedelta(minutes=30)
 
+
 def create_acc_token(username):
     return jwt.create_access_token(
         identity=username,

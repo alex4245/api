@@ -1,11 +1,9 @@
-from flask_restful import Resource, request
+from flask_restful import Resource
 from flask import g
 import flask_jwt_extended as jwt
-import json
 
 from ..extensions import db
-from ..db_meta.user_data import User, UserMainInfo
-from ..util.auth import create_acc_token, create_ref_token
+from ..db_meta.user_data import UserMainInfo
 from .ma_schemas.user_info import MaUserMainInfo
 from ..util.marshmallow_tools import ma_validation
 
@@ -35,7 +33,9 @@ class AccountOptions(Resource):
     @ma_validation(MaUserMainInfo)
     def patch(self):
         user_data = jwt.get_jwt_identity()
-        umi = UserMainInfo.query.filter_by(user_id=user_data.get('user_id')).one()
+        umi = UserMainInfo.query.filter_by(
+            user_id=user_data.get('user_id')
+        ).one()
         umi.full_name = g.post_parametrs.get('full_name'),
-        umi.status=g.post_parametrs.get('status')
+        umi.status = g.post_parametrs.get('status')
         db.session.commit()
