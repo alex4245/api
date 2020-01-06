@@ -3,6 +3,7 @@ from flask_restful import Api
 from flask_cors import CORS
 from .extensions import db, ma
 from werkzeug.contrib.fixers import ProxyFix
+from flask_jwt_extended import JWTManager
 
 
 def create_app(localconfig):
@@ -11,6 +12,7 @@ def create_app(localconfig):
     db.init_app(app)
     ma.init_app(app)
     CORS(app)
+    JWTManager(app)
     api = Api(app)
     app.wsgi_app = ProxyFix(app.wsgi_app)
 

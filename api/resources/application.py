@@ -87,6 +87,11 @@ class TokenRefresh(Resource):
     @jwt.jwt_refresh_token_required
     def post(self):
         username = jwt.get_jwt_identity()
+        user = User.find_by_username(username)
+        user_data = {
+            'username': user.username,
+            'user_id': user.user_id
+        }
         return {
-            'access_token': create_acc_token(username)
+            'access_token': create_acc_token(user_data)
         }

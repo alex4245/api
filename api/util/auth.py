@@ -1,7 +1,7 @@
 import flask_jwt_extended as jwt
 from datetime import timedelta
 
-CONST_ACC_TOKEN_EXPIRES = timedelta(minutes=30)
+CONST_ACC_TOKEN_EXPIRES = timedelta(minutes=1)
 CONST_REF_TOKEN_EXPIRES = timedelta(minutes=30)
 
 
